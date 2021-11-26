@@ -352,6 +352,7 @@ if __name__ == '__main__':
     timestamp = '{}{}{}-{}-{}-{}'.format(d.year, d.month, d.day, d.hour, d.minute, d.second)
 
     fname = path[path.rfind('/'):path.rfind('.')]
+    fname=fname[1:]
     with open('results/{}-{}-{}.json'.format("Paralecticalv2",fname, timestamp) , 'w') as fout:
         json.dump(results, fout)
 
