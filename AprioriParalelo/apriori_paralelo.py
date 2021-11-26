@@ -189,5 +189,5 @@ d = datetime.now()
 timestamp = '{}{}{}-{}-{}-{}'.format(d.year, d.month, d.day, d.hour, d.minute, d.second)
 fname = path[path.rfind('/'):path.rfind('.')]
 fname=fname[1:]
-with open('results/{}-{}-{}.json'.format("apriori_ray_resurrection",fname, timestamp) , 'w') as fout:
+with open('results/{}-{}-{}.json'.format("apriori_paralelo",fname, timestamp) , 'w') as fout:
     json.dump(results, fout)
