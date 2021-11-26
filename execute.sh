@@ -115,7 +115,7 @@ echo "Credo"
 #python3 Paralectico/paralectico-v1.py Datasets/credo_cran_cran_context.cxt 18
 #python3 Paralectico/paralectico-v1.py Datasets/credo_cran_cran_context.cxt 20
 echo "---------------"
-echo "Paralectico Execute"
+echo "Paralectico V2 Execute"
 echo "---------------"
 echo "Mushroom"
 #python3 Paralectico/paralectico-v2.py Datasets/mushroom.txt 

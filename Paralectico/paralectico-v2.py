@@ -14,6 +14,15 @@ from collections import defaultdict
 global NCLOSURES
 fmtset = lambda X: ','.join(map(str, sorted(X)))
 
+def memory_usage_psutil():
+    # return the memory usage in MB
+    import psutil
+    import os
+    process = psutil.Process(os.getpid())
+    #print(process.memory_info())
+    mem = process.memory_info().rss / float(2 ** 20)
+    return mem
+
 def next_lectic_set(X, M, g_prime, m_prime, stack): 
     n_aux_clouses=0
     
