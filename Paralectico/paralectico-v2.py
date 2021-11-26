@@ -173,6 +173,7 @@ def split(X, M, g_prime, m_prime):
     return [(X, Mizq), (Y, M)]
 
 if __name__ == '__main__':
+    print("INIT")
     init_time = time()
     lectic_enum = ray.remote(local_lectic_enum)
 
@@ -321,13 +322,16 @@ if __name__ == '__main__':
             times.append(t)
             depths.append(d)
             NCLOSURES += nc
+    time=time()-init_time
+    print("END")
+    print(time)
     memoria=memory_usage_psutil()
     #print()
 
     results = {
         'n_results' : nresults,
         'n_closures' : closures,
-        'exec_time' : time()-init_time,
+        'exec_time' : time,
         'order': order,
         'times': times,
         'depths':depths,
@@ -346,11 +350,11 @@ if __name__ == '__main__':
     
     #print("# CLOSURES: ", NCLOSURES)
 
-    all_result.sort()
-    with open('out1.txt', 'w') as fout:
-        for r in all_result:
+    #all_result.sort()
+    #with open('out1.txt', 'w') as fout:
+    #    for r in all_result:
             # print(r)
-            fout.write('{}\n'.format( ','.join(map(str, r)) ))
+    #        fout.write('{}\n'.format( ','.join(map(str, r)) ))
     ray.shutdown()
     
     

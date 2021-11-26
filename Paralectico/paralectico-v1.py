@@ -17,6 +17,15 @@ sys.setrecursionlimit(10**6)
 global NCLOSURES
 fmtset = lambda X: ','.join(map(str, sorted(X)))
 
+def memory_usage_psutil():
+    # return the memory usage in MB
+    import psutil
+    import os
+    process = psutil.Process(os.getpid())
+    #print(process.memory_info())
+    mem = process.memory_info().rss / float(2 ** 20)
+    return mem
+
 def next_lectic_set(X, M, g_prime, m_prime, stack):  
     n_aux_clouses=0
     
@@ -61,6 +70,7 @@ def lectic_enum(X, M, g_prime, m_prime):
     return result, n_aux_clouses
 
 if __name__ == '__main__':
+    print("INIT")
     NCLOSURES = 0
     start_time = time() 
     path = sys.argv[1]
@@ -164,23 +174,26 @@ if __name__ == '__main__':
                 blevels[x_len].append(np.isin(M, X, assume_unique=True))
                 
         #print('\t ITERACIONES: {}'.format(itera))
-            
+    memoria=memory_usage_psutil()
     #print(len(all_result))    
     #print("# CLOSURES: ", NCLOSURES)
     time=time()-start_time
+    print("END")
+    print(time)
     #print(len(results))
     #print("# CLOSURES:", NCLOSURES)            
     results = {
         'n_results' : len(all_result),
         'n_closures' : NCLOSURES,
-        'exec_time' : time,                                
+        'exec_time' : time,   
+        'memory_info': memoria                             
     }
     
     d = datetime.now()
-    timestamp = '{}{}{}{}{}{}'.format(d.year, d.month, d.day, d.hour, d.minute, d.second)
+    timestamp = '{}{}{}-{}-{}-{}'.format(d.year, d.month, d.day, d.hour, d.minute, d.second)
     fname = path[path.rfind('/'):path.rfind('.')]
     fname=fname[1:]
-    with open('results/{}-{}-{}-{}.json'.format("Paralectical",carga,fname, timestamp) , 'w') as fout:
+    with open('results/{}-{}-{}-{}.json'.format("ParalecticalV1",carga,fname, timestamp) , 'w') as fout:
         json.dump(results, fout)      
     
 
