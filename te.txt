@@ -1,0 +1,2 @@
+-e git+ssh://git@github.com/Jor-Diaz/LibreriaMemoria.git@57da67f9461b4bac271a86df09f3fb2c9c425025#egg=LibreriaMemoriaFCA
+psutil==5.8.0

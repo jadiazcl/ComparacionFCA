@@ -29,7 +29,9 @@ def genClosedCandidates(L, k, T, I,NCLOSURES):
     return {},NCLOSURES
 
 
-def a_priori_closed(T, I, sigma,NCLOSURES):
+def a_priori_closed(T, I):
+  sigma=0
+  NCLOSURES=0
   tid = {i:set() for i in I}
   for ti, t in enumerate(T):
     for i in t:
@@ -68,8 +70,8 @@ def memory_usage_psutil():
     mem = process.memory_info().rss / float(2 ** 20)
     return mem
 
-print("INIT")
-NCLOSURES = 0
+
+
 start_time = time()     
 path = sys.argv[1]
 with open(path, 'r') as fin:
@@ -77,10 +79,8 @@ with open(path, 'r') as fin:
     ctx = [set(map(int, line.split())) for line in lines]
 M = set(reduce(set.union, ctx))
 
-FC_sigma,NCLOSURES,memoria = a_priori_closed(ctx, M, 0,NCLOSURES)
+FC_sigma,NCLOSURES,memoria = a_priori_closed(ctx, M)
 time=time()-start_time
-print("END")
-print(time)
 
 results = {
     'n_results' : len(FC_sigma),
